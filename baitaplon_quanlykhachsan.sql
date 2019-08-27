@@ -209,3 +209,121 @@ GO
 INSERT [dbo].[phong] ([maPhong], [tinhTrang], [loaiPhong]) VALUES (307, 0, N'Thường')
 GO
 INSERT [dbo].[phong] ([maPhong], [tinhTrang], [loaiPhong]) VALUES (308, 0, N'Thường')
+
+GO
+SET IDENTITY_INSERT [dbo].[thuephong] ON 
+
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (1, 1, CAST(N'2016-11-17' AS Date), NULL, NULL, 201, 2000)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (2, 2, CAST(N'2016-10-20' AS Date), NULL, NULL, 303, 2000)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (3, 5, CAST(N'2016-11-24' AS Date), NULL, NULL, 201, 1000)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (4, 4, CAST(N'2016-11-24' AS Date), NULL, NULL, 102, 20000)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (5, 2, CAST(N'2016-11-24' AS Date), NULL, NULL, 301, 323611)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (6, 2, CAST(N'2016-11-24' AS Date), NULL, NULL, 304, 849)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (7, 4, CAST(N'2016-10-15' AS Date), NULL, NULL, 101, 6544)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (8, 2, CAST(N'2016-11-24' AS Date), NULL, NULL, 101, NULL)
+GO
+INSERT [dbo].[thuephong] ([maThuePhong], [maKhachHang], [ngayDen], [ngayDi], [maDichVu], [maPhong], [thanhTien]) VALUES (9, 2, CAST(N'2016-11-24' AS Date), NULL, NULL, 201, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[thuephong] OFF
+GO
+ALTER TABLE [dbo].[phong]  WITH CHECK ADD  CONSTRAINT [FK_phong_loaiphong] FOREIGN KEY([loaiPhong])
+REFERENCES [dbo].[loaiphong] ([loaiPhong])
+GO
+ALTER TABLE [dbo].[phong] CHECK CONSTRAINT [FK_phong_loaiphong]
+GO
+ALTER TABLE [dbo].[thuephong]  WITH CHECK ADD  CONSTRAINT [FK_thuephong_dichvu] FOREIGN KEY([maDichVu])
+REFERENCES [dbo].[dichvu] ([maDichVu])
+GO
+ALTER TABLE [dbo].[thuephong] CHECK CONSTRAINT [FK_thuephong_dichvu]
+GO
+ALTER TABLE [dbo].[thuephong]  WITH CHECK ADD  CONSTRAINT [FK_thuephong_khachhang] FOREIGN KEY([maKhachHang])
+REFERENCES [dbo].[khachhang] ([maKhachHang])
+GO
+ALTER TABLE [dbo].[thuephong] CHECK CONSTRAINT [FK_thuephong_khachhang]
+GO
+ALTER TABLE [dbo].[thuephong]  WITH CHECK ADD  CONSTRAINT [FK_thuephong_phong] FOREIGN KEY([maPhong])
+REFERENCES [dbo].[phong] ([maPhong])
+GO
+ALTER TABLE [dbo].[thuephong] CHECK CONSTRAINT [FK_thuephong_phong]
+GO
+/****** Object:  StoredProcedure [dbo].[dangnhap]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[dangnhap] 
+	@acc nvarchar(30) ,
+	@pass nvarchar(30)
+AS
+BEGIN
+	SELECT count(*) 
+	FROM [quanlykhachsan].[dbo].[nguoidung]
+	 where taiKhoan=@acc and matKhau=@pass
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[hienthi_thuetheophong]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[hienthi_thuetheophong]
+AS
+BEGIN
+	
+	select maThuePhong,a.maPhong,tenKhachHang,ngaySinh,chungMinhNhanDan,diaChi,soDienThoai,ngayDen,donGia
+from thuephong a,khachhang b,phong c,loaiphong d
+where a.maKhachHang=b.maKhachHang and a.maPhong=c.maPhong and c.loaiPhong=d.loaiPhong and thanhTien is NULL
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[hienthikhachhang]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[hienthikhachhang]
+
+AS
+BEGIN
+	
+	SELECT maKhachHang,tenKhachHang,ngaySinh,gioiTinh= 
+	case when gioiTinh = 'True' then N'Nam' else N'Nữ' end,chungMinhNhanDan,diaChi,soDienThoai,quocTich
+	FROM khachhang
+END
+GO
+/****** Object:  StoredProcedure [dbo].[hienthiphong]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[hienthiphong] 
+AS
+BEGIN
+select maPhong,a.loaiPhong,tinhTrang= case when tinhTrang='True' then N'Bận' else N'Rỗi' end,donGia
+from phong a,loaiphong b
+where a.loaiPhong=b.loaiPhong
+END
+GO
+/****** Object:  StoredProcedure [dbo].[hienthitatcanhanvien]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[hienthitatcanhanvien]
+AS
+BEGIN
+
+	SELECT maNhanVien,hoTen,gioiTinh= case when gioiTinh = 'true'  then N'Nam' else N'Nữ' end ,ngaySinh,soChungMinh,diaChi,soDienThoai,ngayVaoLam
+	from [dbo].[nhanvien]
+END
