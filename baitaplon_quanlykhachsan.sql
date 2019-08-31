@@ -327,3 +327,229 @@ BEGIN
 	SELECT maNhanVien,hoTen,gioiTinh= case when gioiTinh = 'true'  then N'Nam' else N'Nữ' end ,ngaySinh,soChungMinh,diaChi,soDienThoai,ngayVaoLam
 	from [dbo].[nhanvien]
 END
+
+GO
+/****** Object:  StoredProcedure [dbo].[sua_khachhang]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[sua_khachhang]
+(
+	@makhachhang int,
+	@tenKhachHang nvarchar(50),
+	@ngaySinh date,
+	@gioiTinh bit,
+	@chungMinhNhanDan nvarchar(25),
+	@diaChi nvarchar(50),
+	@soDienThoai nvarchar(25),
+	@quocTich nvarchar(50)
+	)
+AS
+BEGIN
+update [dbo].[khachhang]
+set 
+tenKhachHang=@tenKhachHang,
+gioiTinh=@gioiTinh,
+ngaySinh=@ngaySinh,
+chungMinhNhanDan=@chungMinhNhanDan,
+diaChi=@diaChi,
+soDienThoai=@soDienThoai,
+quocTich=@quocTich
+where maKhachHang=@makhachhang
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[sua_nhanvien]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sua_nhanvien]
+	(
+	@maNhanVien int,
+	@hoTen nvarchar(50),
+	@gioiTinh bit,
+	@ngaySinh date,
+	@soChungMinh nvarchar(25),
+	@diaChi nvarchar(50),
+	@soDienThoai nvarchar(25),
+	@ngayVaoLam date
+	)
+AS
+BEGIN
+update [dbo].[nhanvien]
+set 
+hoTen=@hoTen,
+gioiTinh=@gioiTinh,
+ngaySinh=@ngaySinh,
+soChungMinh=@soChungMinh,
+diaChi=@diaChi,
+soDienThoai=@soDienThoai,
+ngayVaoLam=@ngayVaoLam
+where maNhanVien=@maNhanVien
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[timkiem_thuephong]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[timkiem_thuephong]
+@maPhong int
+AS
+BEGIN
+	
+	select tenKhachHang,ngaySinh,chungMinhNhanDan,diaChi,soDienThoai,ngayDen
+from thuephong a,khachhang b
+where a.maKhachHang=b.maKhachHang and maPhong =@maPhong
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[tinhtien]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[tinhtien]
+(
+@ngayDi date,
+@thanhTien float,
+@maThuePhong int,
+@maPhong int
+)
+AS
+BEGIN
+BEGIN
+	update [dbo].[thuephong]
+set ngayDi=@ngayDi,
+thanhTien=@thanhTien
+where maThuePhong=@maThuePhong
+END
+BEGIN
+	update [dbo].[phong]
+set tinhTrang = 'False'
+where maPhong=@maPhong
+END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[them_khachhang]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[them_khachhang]
+	(
+	@tenKhachHang nvarchar(50),
+	@ngaySinh date,
+	@gioiTinh bit,
+	@chungMinhNhanDan nvarchar(25),
+	@diaChi nvarchar(50),
+	@soDienThoai nvarchar(25),
+	@quocTich nvarchar(50)
+	)
+AS
+BEGIN
+	
+	insert into khachhang(tenKhachHang,ngaySinh,gioiTinh,chungMinhNhanDan,diaChi,soDienThoai,quocTich) 
+	values (@tenKhachHang,@ngaySinh,@gioiTinh,@chungMinhNhanDan,@diaChi,@soDienThoai,@quocTich)
+	return
+END
+GO
+/****** Object:  StoredProcedure [dbo].[them_nhanvien]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[them_nhanvien] 
+	(
+	@hoTen nvarchar(50),
+	@gioiTinh bit,
+	@ngaySinh date,
+	@soChungMinh nvarchar(25),
+	@diaChi nvarchar(50),
+	@soDienThoai nvarchar(25),
+	@ngayVaoLam date
+	)
+AS
+BEGIN
+	
+	insert into nhanvien(hoTen,gioiTinh,ngaySinh,soChungMinh,diaChi,soDienThoai,ngayVaoLam) 
+	values (@hoTen,@gioiTinh,@ngaySinh,@soChungMinh,@diaChi,@soDienThoai,@ngayVaoLam)
+	return
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[them_thuephong]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[them_thuephong]
+(
+@maKhachHang int,
+@ngayDen date,
+@maPhong int
+)
+AS
+BEGIN
+	BEGIN
+	insert into thuephong(maKhachHang,ngayDen,maPhong)
+	values(@maKhachHang,@ngayDen,@maPhong)
+	END
+	BEGIN
+	update [dbo].[phong]
+	set tinhTrang='True'
+	where maPhong =@maPhong
+	END
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[xoa_khachhang]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[xoa_khachhang]
+@maKhachHang int
+AS
+BEGIN
+	DELETE 
+	FROM khachhang
+	 WHERE maKhachHang= @maKhachHang
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[xoa_nhanvien]    Script Date: 24/11/2016 19:46:12 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[xoa_nhanvien]
+@maNhanVien int
+AS
+BEGIN
+	DELETE FROM nhanvien WHERE maNhanVien=@maNhanVien
+END
+
+GO
+USE [master]
+GO
+ALTER DATABASE [quanlykhachsan] SET  READ_WRITE 
+GO
