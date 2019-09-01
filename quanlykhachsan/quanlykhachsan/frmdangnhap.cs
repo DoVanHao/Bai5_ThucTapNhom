@@ -58,19 +58,7 @@ namespace quanlykhachsan
           
         }
 
-        private void cbkhach_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbkhach.Checked == true)
-            {
-                trangthai(false);
-                txtmatkhau.Clear();
-                txttaikhoan.Clear();
-            }
-            else
-            {
-                trangthai(true);
-            }
-        }
+
 
         private void btnthoat_Click(object sender, EventArgs e)
         {
