@@ -16,9 +16,21 @@ namespace BLL
 
             khDAL.sua_khachhang(tenKhachHang, ngaySinh, gioiTinh, chungMinhNhanDan, diaChi, soDienThoai, quocTich, maKhachHang);
         }
-        public frmkhachhang()
+      
+        protected override void Dispose(bool disposing)
         {
-            InitializeComponent();
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            frmCriticalItems CI = new frmCriticalItems();
+            CI.Show();
         }
         int temp;
         private void hienthi()

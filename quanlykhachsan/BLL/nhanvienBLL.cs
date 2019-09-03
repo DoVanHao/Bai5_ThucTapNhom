@@ -25,7 +25,37 @@ namespace BLL
             nvDLL.xoa_nhanvien(maNhanVien);
 
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
+        public void UpdateTrail()
+        {
+
+
+            try
+            {
+                string sql = @"INSERT INTO tblAuditTrail VALUES(@Dater,@Transactype,@Description,@Authority)";
+                cm = new SqlCommand(sql, cn);
+                cm.Parameters.AddWithValue("@Dater", lblDate.Text);
+                cm.Parameters.AddWithValue("@Transactype", "Updation");
+                cm.Parameters.AddWithValue("@Description", "Item: '" + lblName.Text + "' had its CriticalLimit UPDATED!");
+                cm.Parameters.AddWithValue("@Authority", "Admin");
+
+                cm.ExecuteNonQuery();
+
+            }
+            catch (SqlException l)
+            {
+                MessageBox.Show("Re-input again.!");
+                MessageBox.Show(l.Message);
+            }
+        }
         public void sua_nhanvien(string hoTen, bool gioiTinh, DateTime ngaySinh, string soChungMinh, string diaChi, string soDienThoai, DateTime ngayVaoLam, int maNhanVien)
         {
 
