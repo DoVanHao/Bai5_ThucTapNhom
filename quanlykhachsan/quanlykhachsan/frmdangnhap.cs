@@ -76,5 +76,37 @@ namespace quanlykhachsan
         {
             Application.Exit(); ;
         }
+		
+		
+		// sua
+		private void trangthai( bool t)
+        {
+            txttaikhoan.Enabled = t;
+            txtmatkhau.Enabled = t;
+        }
+
+        private void frm_load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void cbkhach_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbkhach.Checked == true)
+            {
+                trangthai(false);
+                txtmatkhau.Clear();
+                txttaikhoan.Clear();
+            }
+            else
+            {
+                trangthai(true);
+            }
+        }
+
+        private void btnthoat_Click1(object sender, EventArgs e)
+        {
+            Application.Exit(); ;
+        }
     }
 }
