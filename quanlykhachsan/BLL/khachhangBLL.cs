@@ -17,15 +17,7 @@ namespace BLL
             khDAL.sua_khachhang(tenKhachHang, ngaySinh, gioiTinh, chungMinhNhanDan, diaChi, soDienThoai, quocTich, maKhachHang);
         }
       
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+     
         private void button3_Click(object sender, EventArgs e)
         {
             this.Dispose();
