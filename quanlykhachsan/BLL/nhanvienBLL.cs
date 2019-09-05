@@ -57,8 +57,21 @@ namespace BLL
             base.Dispose(disposing);
         }
 
-      
+        public void tinhtien(DateTime ngayDi, float thanhTien, int maThuePhong, int maPhong)
+        {
 
+            tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
+        }
+        private void frm_load(object sender, EventArgs e)
+        {
+            phongBLL pbll = new phongBLL();
+            dataGridView1.DataSource = pbll.hienthithongtinphong();
+        }
+
+        private void thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         public void UpdateTrail()
         {
 

@@ -20,11 +20,7 @@ namespace BLL
         {
             return tpDAL.hienthi_thuetheophong();
         }
-        public void tinhtien(DateTime ngayDi, float thanhTien, int maThuePhong, int maPhong)
-        {
-
-            tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
-        }
+      
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))

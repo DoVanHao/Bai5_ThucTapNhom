@@ -16,8 +16,12 @@ namespace BLL
 
             khDAL.sua_khachhang(tenKhachHang, ngaySinh, gioiTinh, chungMinhNhanDan, diaChi, soDienThoai, quocTich, maKhachHang);
         }
-      
-     
+        public void tinhtien(DateTime ngayDi, float thanhTien, int maThuePhong, int maPhong)
+        {
+
+            tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             this.Dispose();
