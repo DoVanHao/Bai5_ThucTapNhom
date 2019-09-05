@@ -24,6 +24,37 @@ namespace quanlykhachsan
             khachhangBLL pbll = new khachhangBLL();
             dgkhachhang.DataSource = pbll.hienthikhachhang();
         }
+        private void hienthiphong()
+        {
+            phongBLL pbll = new phongBLL();
+            dtgvDanhSachphong.DataSource = pbll.hienthithongtinphong();
+        }
+        private void hienthitraphong()
+        {
+            thuephongBLL tpBLL = new thuephongBLL();
+            dgtraphong.DataSource = tpBLL.hienthi_thuetheophong();
+        }
+        private void trangthai(bool t)
+        {
+            txtPhongtp.Enabled =t;
+            dtTuNgaytp.Enabled = t;
+            txtphongdt.Enabled = !t;
+            dtngaydattruoc.Enabled = !t;
+        }
+        private void frm_load(object sender, EventArgs e)
+        {
+         
+            hienthiphong();
+            hienthikhachhang();
+            dtTuNgaytp.Value = DateTime.Now;
+        }
+
+        private void btndangxuat_Click(object sender, EventArgs e)
+        {
+            frmmainquanlykhachsan.ActiveForm.Close();
+            frmdangnhap frm = new frmdangnhap();
+            frm.Show();
+        }
 
         private void dgkhachhang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
