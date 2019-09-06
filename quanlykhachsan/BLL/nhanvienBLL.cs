@@ -67,7 +67,14 @@ namespace BLL
             phongBLL pbll = new phongBLL();
             dataGridView1.DataSource = pbll.hienthithongtinphong();
         }
-
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
         private void thoat_Click(object sender, EventArgs e)
         {
             this.Close();

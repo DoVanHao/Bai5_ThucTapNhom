@@ -17,8 +17,6 @@ namespace BLL
             InitializeComponent();
         }
 
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -26,6 +24,14 @@ namespace BLL
             frm.Show();
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            frmCriticalItems CI = new frmCriticalItems();
+            CI.Show();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
