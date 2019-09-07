@@ -22,13 +22,6 @@ namespace BLL
             tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-            frmCriticalItems CI = new frmCriticalItems();
-            CI.Show();
-        }
-        int temp;
         private void hienthi()
         {
             khachhangBLL pbll = new khachhangBLL();
@@ -76,7 +69,9 @@ namespace BLL
         {
             temp = 2;
             trangthai(true);
-
+            this.Hide();
+            frmdangnhap frm = new frmdangnhap();
+            frm.Show();
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
