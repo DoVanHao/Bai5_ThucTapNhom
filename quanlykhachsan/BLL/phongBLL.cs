@@ -17,7 +17,7 @@ namespace BLL
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
             this.Hide();
             frmdangnhap frm = new frmdangnhap();
@@ -25,7 +25,7 @@ namespace BLL
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button_Click(object sender, EventArgs e)
         {
             this.Dispose();
             frmCriticalItems CI = new frmCriticalItems();

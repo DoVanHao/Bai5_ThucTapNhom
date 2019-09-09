@@ -26,6 +26,7 @@ namespace BLL
         {
             khachhangBLL pbll = new khachhangBLL();
             dataGridView1.DataSource = pbll.hienthikhachhang();
+            pbll.ToString();
         }
         private void trangthai(bool t)
         {
@@ -42,6 +43,7 @@ namespace BLL
         private void frm_load(object sender, EventArgs e)
         {
             hienthi();
+           
             trangthai(false);
         }
 
@@ -58,13 +60,7 @@ namespace BLL
             cbgiotinhkh.Text = row.Cells["gioiTinh"].Value.ToString();
             dtngaysinh.Value = Convert.ToDateTime(row.Cells["ngaySinh"].Value.ToString());
         }
-        private bool travegioitinh()
-        {
-            if (cbgiotinhkh.Text == "Nam")
-                return true;
-            else
-                return false;
-        }
+       
         private void btnsua_Click(object sender, EventArgs e)
         {
             temp = 2;

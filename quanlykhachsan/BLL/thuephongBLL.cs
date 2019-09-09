@@ -29,5 +29,11 @@ namespace BLL
             }
             base.Dispose(disposing);
         }
+        private void frm_load(object sender, EventArgs e)
+        {
+            phongBLL pbll = new phongBLL();
+            dataGridView1.DataSource = pbll.hienthithongtinphong();
+            pbll.ToString();
+        }
     }
 }
