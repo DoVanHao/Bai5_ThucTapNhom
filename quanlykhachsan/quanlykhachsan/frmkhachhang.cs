@@ -106,5 +106,32 @@ namespace quanlykhachsan
             temp = 1;
             trangthai(true);
         }
+		        private void btnxoa_Click(object sender, EventArgs e)
+        {
+            khachhangBLL khBLL = new khachhangBLL();
+           DialogResult luu= MessageBox.Show("Bạn chắc chắn xóa??", "Thông báo thêm mới", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if(luu==DialogResult.Yes)
+            {
+                
+               khBLL.xoa_khachhang(int.Parse(txtmakhachhang.Text));
+              hienthi();
+            }
+        }
+
+        private void btnluu_Click(object sender, EventArgs e)
+        {
+                khachhangBLL khBLL = new khachhangBLL(); 
+            if (temp == 2)
+            {
+                khBLL.sua_khachhang(txttenkh.Text, dtngaysinh.Value, travegioitinh(), txtcmt.Text, txtdiachi.Text, txtsdt.Text, cbquoctich.Text, int.Parse(txtmakhachhang.Text));
+                hienthi();
+                MessageBox.Show("Bạn đã lưu thành công", "Thông báo cập nhật", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+            else
+            {
+                khBLL.them_khachhang(txttenkh.Text, dtngaysinh.Value, travegioitinh(), txtcmt.Text, txtdiachi.Text, txtsdt.Text, cbquoctich.Text);
+                hienthi();
+            }
+        }
     }
 }
