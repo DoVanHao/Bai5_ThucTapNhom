@@ -20,7 +20,12 @@ namespace BLL
         {
             return tpDAL.hienthi_thuetheophong();
         }
-      
+        private void hienthi()
+        {
+            khachhangBLL pbll = new khachhangBLL();
+            dataGridView1.DataSource = pbll.hienthikhachhang();
+            pbll.ToString();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))

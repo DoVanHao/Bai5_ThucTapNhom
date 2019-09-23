@@ -56,12 +56,17 @@ namespace BLL
             }
             base.Dispose(disposing);
         }
+        private void hienthi()
+        {
+            khachhangBLL pbll = new khachhangBLL();
+            dataGridView1.DataSource = pbll.hienthikhachhang();
+            pbll.ToString();
+        }
+        public void tinhtien(DateTime ngayDi, float thanhTien, int maThuePhong, int maPhong)
+        {
 
-        //public void tinhtien(DateTime ngayDi, float thanhTien, int maThuePhong, int maPhong)
-        //{
-
-        //    tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
-        //}
+            tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
+        }
         private void frm_load(object sender, EventArgs e)
         {
             phongBLL pbll = new phongBLL();

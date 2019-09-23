@@ -24,7 +24,12 @@ namespace BLL
             frm.Show();
 
         }
-
+        private void hienthi()
+        {
+            khachhangBLL pbll = new khachhangBLL();
+            dataGridView1.DataSource = pbll.hienthikhachhang();
+            pbll.ToString();
+        }
         private void button_Click(object sender, EventArgs e)
         {
             this.Dispose();
