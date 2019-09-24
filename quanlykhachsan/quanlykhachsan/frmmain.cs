@@ -147,18 +147,7 @@ namespace quanlykhachsan
 
         }
 
-        priv SqlConnection cnn = ketnoi.Get();
-            // Khai báo và khởi tạo đối tượng Command, truyền vào tên thủ tục tương ứng
-            SqlCommand cmd = new SqlCommand("hienthitatcanhanvien", cnn);
-        // Khai báo kiểu thực thi là Thực thi thủ tục
-        cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = cnn;
-            cmd.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-        DataTable dt = new DataTable();
-        da.Fill(dt);
-            cnn.Close();
-            return dt;ate void cbTheoDT_CheckedChanged(object sender, EventArgs e)
+        private void cbTheoDT_CheckedChanged(object sender, EventArgs e)
         {
 
 
@@ -171,29 +160,12 @@ namespace quanlykhachsan
 
         private void cbTheoCMND_CheckedChanged(object sender, EventArgs e)
         {
-            SqlConnection cnn = ketnoi.Get();
-            // Khai báo và khởi tạo đối tượng Command, truyền vào tên thủ tục tương ứng
-            SqlCommand cmd = new SqlCommand("hienthitatcanhanvien", cnn);
-            // Khai báo kiểu thực thi là Thực thi thủ tục
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = cnn;
-            cmd.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cnn.Close();
-            return dt;
-
+           
         }
 
         private void cbTheoDiaChi_CheckedChanged(object sender, EventArgs e)
         {
-            SqlConnection cnn = ketnoi.Get();
-            SqlCommand cmd = new SqlCommand("xoa_nhanvien", cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("maNhanVien", maNhanVien);
-            int i = cmd.ExecuteNonQuery();
-            cnn.Close();
+           
 
         }
 

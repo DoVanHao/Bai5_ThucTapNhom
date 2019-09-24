@@ -111,6 +111,30 @@ namespace DAL
             int i = cmd.ExecuteNonQuery();
             cnn.Close();
         }
+        public bool them_nhieunhanvien(string hoTen, bool gioiTinh, DateTime ngaySinh, string soChungMinh, string diaChi, string soDienThoai, DateTime ngayVaoLam)
+        {
+            SqlConnection cnn = ketnoi.Get();
+            SqlCommand cmd = new SqlCommand("them_nhanvien", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("hoTen", hoTen);
+            cmd.Parameters.AddWithValue("gioiTinh", gioiTinh);
+            cmd.Parameters.AddWithValue("ngaySinh", ngaySinh);
+            cmd.Parameters.AddWithValue("soChungMinh", soChungMinh);
+            cmd.Parameters.AddWithValue("diaChi", diaChi);
+            cmd.Parameters.AddWithValue("soDienThoai", soDienThoai);
+            cmd.Parameters.AddWithValue("ngayVaoLam", ngayVaoLam);
+
+            int i = cmd.ExecuteNonQuery();
+            cnn.Close();
+            if (i != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
