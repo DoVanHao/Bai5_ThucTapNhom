@@ -61,7 +61,41 @@ namespace DAL
             cnn.Close();
 
         }
+        public bool them_NV(string hoTen, bool gioiTinh, DateTime ngaySinh, string soChungMinh, string diaChi, string soDienThoai, DateTime ngayVaoLam)
+        {
+            SqlConnection cnn = ketnoi.Get();
+            SqlCommand cmd = new SqlCommand("them_nhanvien", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("hoTen", hoTen);
+            cmd.Parameters.AddWithValue("gioiTinh", gioiTinh);
+            cmd.Parameters.AddWithValue("ngaySinh", ngaySinh);
+            cmd.Parameters.AddWithValue("soChungMinh", soChungMinh);
+            cmd.Parameters.AddWithValue("diaChi", diaChi);
+            cmd.Parameters.AddWithValue("soDienThoai", soDienThoai);
+            cmd.Parameters.AddWithValue("ngayVaoLam", ngayVaoLam);
 
+            int i = cmd.ExecuteNonQuery();
+            cnn.Close();
+            if (i != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void xoa_NV(int maNhanVien)
+        {
+
+            SqlConnection cnn = ketnoi.Get();
+            SqlCommand cmd = new SqlCommand("xoa_nhanvien", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("maNhanVien", maNhanVien);
+            int i = cmd.ExecuteNonQuery();
+            cnn.Close();
+
+        }
         public void sua_nhanvien(string hoTen, bool gioiTinh, DateTime ngaySinh, string soChungMinh, string diaChi, string soDienThoai, DateTime ngayVaoLam, int maNhanVien)
         {
             SqlConnection cnn = ketnoi.Get();
