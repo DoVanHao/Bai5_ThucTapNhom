@@ -21,7 +21,12 @@ namespace BLL
 
             tpDAL.tinhtien(ngayDi, thanhTien, maThuePhong, maPhong);
         }
-
+        private void frm_load(object sender, EventArgs e)
+        {
+            phongBLL pbll = new phongBLL();
+            dataGridView1.DataSource = pbll.hienthithongtinphong();
+            pbll.ToString();
+        }
         private void hienthi()
         {
             khachhangBLL pbll = new khachhangBLL();
