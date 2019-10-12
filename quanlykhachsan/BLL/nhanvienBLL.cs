@@ -56,13 +56,12 @@ namespace BLL
             }
             base.Dispose(disposing);
         }
-        protected override void Dispose(bool disposing)
+      
+        private void frm_load(object sender, EventArgs e)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            phongBLL pbll = new phongBLL();
+            dataGridView1.DataSource = pbll.hienthithongtinphong();
+            pbll.ToString();
         }
         protected override void Dispose(bool disposing)
         {

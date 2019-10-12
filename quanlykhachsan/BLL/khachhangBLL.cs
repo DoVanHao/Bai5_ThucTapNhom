@@ -33,6 +33,14 @@ namespace BLL
             dataGridView1.DataSource = pbll.hienthikhachhang();
             pbll.ToString();
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
         private void trangthai(bool t)
         {
             // txtmakhachhang.Enabled = t;

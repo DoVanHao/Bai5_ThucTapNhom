@@ -26,6 +26,12 @@ namespace BLL
             dataGridView1.DataSource = pbll.hienthikhachhang();
             pbll.ToString();
         }
+        private void frm_load(object sender, EventArgs e)
+        {
+            phongBLL pbll = new phongBLL();
+            dataGridView1.DataSource = pbll.hienthithongtinphong();
+            pbll.ToString();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))

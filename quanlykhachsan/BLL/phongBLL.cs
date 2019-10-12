@@ -24,12 +24,7 @@ namespace BLL
             frm.Show();
 
         }
-        private void frm_load(object sender, EventArgs e)
-        {
-            phongBLL pbll = new phongBLL();
-            dataGridView1.DataSource = pbll.hienthithongtinphong();
-            pbll.ToString();
-        }
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
