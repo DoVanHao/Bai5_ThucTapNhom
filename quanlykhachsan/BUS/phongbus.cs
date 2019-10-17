@@ -11,14 +11,7 @@ namespace BUS
 {
     public class phongBUS
     {
-
-            phongDAO Stclr = new phongBUS();
-
-            //Student get by all
-            public DataTable hienthithongtinphong()
-            {
-                return Stclr.hienthithongtinphong();
-            }
-        }
+        
+       }
     
 }
