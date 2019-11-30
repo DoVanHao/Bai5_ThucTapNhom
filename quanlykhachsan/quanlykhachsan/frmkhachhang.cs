@@ -68,6 +68,21 @@ namespace quanlykhachsan
 
         }
 
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            row = dataGridView1.Rows[e.RowIndex];
+            txtmakhachhang.Text = row.Cells["maKhachHang"].Value.ToString();
+            txttenkh.Text = row.Cells["tenKhachHang"].Value.ToString();
+            txtcmt.Text = row.Cells["chungMinhNhanDan"].Value.ToString();
+            txtsdt.Text = row.Cells["soDienThoai"].Value.ToString();
+            txtdiachi.Text = row.Cells["diaChi"].Value.ToString();
+            cbquoctich.Text = row.Cells["quocTich"].Value.ToString();
+            cbgiotinhkh.Text = row.Cells["gioiTinh"].Value.ToString();
+            dtngaysinh.Value = Convert.ToDateTime(row.Cells["ngaySinh"].Value.ToString());
+        }
         private void btnxoa_Click(object sender, EventArgs e)
         {
             khachhangBLL khBLL = new khachhangBLL();
@@ -96,6 +111,21 @@ namespace quanlykhachsan
             }
         }
 
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            row = dataGridView1.Rows[e.RowIndex];
+            txtmakhachhang.Text = row.Cells["maKhachHang"].Value.ToString();
+            txttenkh.Text = row.Cells["tenKhachHang"].Value.ToString();
+            txtcmt.Text = row.Cells["chungMinhNhanDan"].Value.ToString();
+            txtsdt.Text = row.Cells["soDienThoai"].Value.ToString();
+            txtdiachi.Text = row.Cells["diaChi"].Value.ToString();
+            cbquoctich.Text = row.Cells["quocTich"].Value.ToString();
+            cbgiotinhkh.Text = row.Cells["gioiTinh"].Value.ToString();
+            dtngaysinh.Value = Convert.ToDateTime(row.Cells["ngaySinh"].Value.ToString());
+        }
         private void btnthoat_Click(object sender, EventArgs e)
         {
             Close();
@@ -118,20 +148,6 @@ namespace quanlykhachsan
             }
         }
 
-        private void btnluu_Click(object sender, EventArgs e)
-        {
-                khachhangBLL khBLL = new khachhangBLL(); 
-            if (temp == 2)
-            {
-                khBLL.sua_khachhang(txttenkh.Text, dtngaysinh.Value, travegioitinh(), txtcmt.Text, txtdiachi.Text, txtsdt.Text, cbquoctich.Text, int.Parse(txtmakhachhang.Text));
-                hienthi();
-                MessageBox.Show("Bạn đã lưu thành công", "Thông báo cập nhật", MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            else
-            {
-                khBLL.them_khachhang(txttenkh.Text, dtngaysinh.Value, travegioitinh(), txtcmt.Text, txtdiachi.Text, txtsdt.Text, cbquoctich.Text);
-                hienthi();
-            }
-        }
+
     }
 }
